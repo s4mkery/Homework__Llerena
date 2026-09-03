@@ -1,4 +1,3 @@
-class Seller:
 from car import Car
 class Seller:
 
@@ -6,38 +5,59 @@ class Seller:
     rating: int | float
     inventory = []
 
-    def _init_(self,name,rating,inventory):
+    def __init__(self,name,rating,inventory):
         self.name = name
         self.rating = rating   
         self.inventory = inventory
 
     def buy(self):
-        
-        with open('Cars_Data.csv', mode='r', newline='') as cars:
-            next(carsitos)
 
-            for row in cars:
 
-                atributes = row.strip().split(",")
+        newCar = Car(
+            manufacturer=input("Manufacturer: "),
+            model=input("Model: "),
+            year=int(input("Year: ")),
+            mileage=float(input("Mileage: ")),
+            engine=input("Engine: "),
+            transmission=input("Transmission: "),
+            drivetrain=input("Drivetrain: "),
+            mpg=float(input("MPG: ")),
+            exteriorColor=input("Exterior Color: "),
+            interiorColor=input("Interior Color: "),
+            accident=input("Accident (yes/no): ").strip().lower() in ("yes", "true", "1"),
+            price=float(input("Price: ")),
+        )
+        self.inventory.append(newCar)
 
-                newCar = Car(
-                    manufacturer=atributes[0],
-                    model=atributes[1],
-                    year=int(atributes[2]),
-                    mileage=float(atributes[3]),
-                    engine=atributes[4],
-                    transmission=atributes[5],
-                    drivetrain=atributes[6],
-                    mpg=float(atributes[7]),
-                    exteriorColor=atributes[8],
-                    interiorColor=atributes[9],
-                    accident=atributes[10].strip().lower() in ("yes", "1"),
-                    price=float(atributes[11]),
-                )
-                self.inventory.append(newCar)
+        carDict = {
+            "manufacturer": newCar.manufacturer,
+            "model": newCar.model,
+            "year": str(newCar.year),
+            "mileage": str(newCar.mileage),
+            "engine": newCar.engine,
+            "transmission": newCar.transmission,
+            "drivetrain": newCar.drivetrain,
+            "mpg": str(newCar.mpg),
+            "exteriorcolor": newCar.exteriorColor,
+            "interiorcolor": newCar.interiorColor,
+            "accident": str(newCar.accident),
+            "price": str(newCar.price),
+        }
 
+        with open('Carrito.csv', mode='r', newline='') as carsitos:
+            headers= [h.strip().lower() for h in carsitos]
+
+        header = [carDict.get(col, "") for col in headers]
+        boughtCar = ",".join(header) + "\n"
+
+        with open("Carrito.csv", mode="a", encoding="utf-8") as f:
+            f.write(boughtCar)
+            
+
+            
     def sell(self, x):
 
         soldCar = self.inventory.pop(x)
         print("Sold car information: ")
         print(soldCar.manufacturer + " " + soldCar.model)
+            
