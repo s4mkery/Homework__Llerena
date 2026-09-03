@@ -1,0 +1,13 @@
+from seller import Seller
+from car import Car
+
+def main():
+
+    thatSeller = Seller("Mario", "5", inventory=[])
+    thatSeller.buy()
+    print(len(thatSeller.inventory))
+    thatSeller.sell(-1)
+    print(len(thatSeller.inventory))
+
+if __name__ == "__main__":
+    main()
