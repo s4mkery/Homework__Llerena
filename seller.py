@@ -13,10 +13,10 @@ class Seller:
 
     def buy(self):
         
-        with open('Carrito.csv', mode='r', newline='') as carsitos:
+        with open('Cars_Data.csv', mode='r', newline='') as cars:
             next(carsitos)
 
-            for row in carsitos:
+            for row in cars:
 
                 atributes = row.strip().split(",")
 
