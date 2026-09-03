@@ -24,7 +24,7 @@ class Seller:
             mpg=float(input("MPG: ")),
             exteriorColor=input("Exterior Color: "),
             interiorColor=input("Interior Color: "),
-            accident=input("Accident (yes/no): ").strip().lower() in ("yes", "true", "1"),
+            accident=input("Accident (yes/no): ").strip().lower() in ("yes"),
             price=float(input("Price: ")),
         )
         self.inventory.append(newCar)
@@ -44,13 +44,13 @@ class Seller:
             "price": str(newCar.price),
         }
 
-        with open('Carrito.csv', mode='r', newline='') as carsitos:
-            headers= [h.strip().lower() for h in carsitos]
+        with open('Cars_Data.csv', mode='r', newline='') as cars:
+            headers= [h.strip().lower() for h in cars]
 
         header = [carDict.get(col, "") for col in headers]
         boughtCar = ",".join(header) + "\n"
 
-        with open("Carrito.csv", mode="a", encoding="utf-8") as f:
+        with open("Cars_Data.csv", mode="a") as f:
             f.write(boughtCar)
             
 
