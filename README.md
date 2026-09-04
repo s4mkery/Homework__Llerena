@@ -26,3 +26,18 @@ Functions:
     Reupholster: Function to change a interior color. New value cannot be same as current interior color.
     Drive: Function that should add input number to self.miles
     ModifyPrice: Function to change car's price or reduce current price.
+
+The following information can be found at seller.py:
+
+Attributes:
+
+    Name(str): Name of the seller
+    Rating(int or float): How good seller is. 1 to 5 rating
+    Inventory(List): Where all cars are placed. From csv file Car_Data
+
+Functions:  
+
+    buy: Function to append a new car by inputs. Attributes from car class are different from the csv, that's why a dictionary was used instead of hardcoding. 
+    sell: Function that takes a number as argument, and pop car from inventory in that position. Also displays some info about the sold car. 
+
+
